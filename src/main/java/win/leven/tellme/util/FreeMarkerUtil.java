@@ -3,17 +3,11 @@ package win.leven.tellme.util;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import org.springframework.beans.factory.BeanInitializationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 /**
  * Created by leven on 2017/4/13.
