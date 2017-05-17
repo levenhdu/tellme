@@ -1,31 +1,18 @@
 package win.leven.tellme.controller;
 
-import com.alibaba.fastjson.JSON;
-import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import win.leven.tellme.dao.UserDao;
-import win.leven.tellme.entity.UserEntity;
-import win.leven.tellme.util.FreeMarkerUtil;
+import win.leven.tellme.util.HttpClientUtil;
 import win.leven.tellme.util.MailUtil;
 
 import javax.annotation.Resource;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by leven on 2017/4/12.
@@ -36,7 +23,7 @@ public class RestController {
     @Resource
     UserDao userDao;
 
-    Logger log= LoggerFactory.getLogger(RestController.class);
+    Logger log = LoggerFactory.getLogger(RestController.class);
 
     @Value("${spring.mail.username}")
     private String fromEmail;
@@ -60,17 +47,9 @@ public class RestController {
     }
 
 
-
-
     @RequestMapping("/user/list")
-    String userList() {
-        List<UserEntity> userList = userDao.findUserList();
-        log.info(JSON.toJSONString(userList));
-            Map<String, Object> dataMap = new HashMap<>();
-            userDao.findUserList();
-//            log.info(FreeMarkerUtil.generateHtml(dataMap,"email"));
-
-        return "";
+    String userList() throws IOException {
+        return HttpClientUtil.post("https://hook.bearychat.com/=bwAyT/incoming/18b143f9b85b05209a1ef2da80db79a5", "{\"text\": \"Hello world\"}");
     }
 
 }
