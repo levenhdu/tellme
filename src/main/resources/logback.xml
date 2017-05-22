@@ -8,7 +8,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoder 默认配置为PatternLayoutEncoder -->
         <encoder>
-            <pattern> %d{HH:mm:ss} [%thread][%X{traceId}][%X{ip}] %-5level %logger{36} - %msg%n
+            <pattern> %d{HH:mm:ss} [%thread][%X{traceId}][%X{ip}]  %highlight(%-5level) %logger{36} - %highlight(%msg%n)
             </pattern>
         </encoder>
     </appender>
